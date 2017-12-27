@@ -10,7 +10,7 @@ import { IProduct } from "./product";
 export class ProductListComponent 
 {
     constructor() {
-        this.filterdProduct = this.products;
+    this.filterdProduct = this.products;
     }
     pageTitle:string='Product List';
     imageWidth:number=50;
