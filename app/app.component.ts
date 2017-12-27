@@ -14,4 +14,5 @@ import { Component } from "@angular/core";
 export class AppComponent{
   //name: String ="Capgemini"
 pageTitle:string='Acme Product Management';
+//getTitle():string{...};
 }
