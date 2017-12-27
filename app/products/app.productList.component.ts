@@ -23,10 +23,16 @@ export class ProductListComponent
     //}
 
     constructor(private _ProductService:ProductService) {
-        
-    this.filterdProduct = this.products =_ProductService.getProducts();
+    
+    //this.filterdProduct =_ProductService.getProducts();
     this._listFilter='cart';
-    }
+}
+  ngOnInit(): void {
+this._ProductService.getProducts()
+.subscribe(products => {this.products= products
+}
+error => this.errorMessage= <any>error);
+}  
 
     get listFilter():string{
         return this._listFilter;
@@ -50,5 +56,4 @@ export class ProductListComponent
     toggleImage():void{
     this.showImage=!this.showImage;
     }
-
 }

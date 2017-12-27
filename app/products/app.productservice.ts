@@ -1,37 +1,26 @@
-
-
-
-
 import { Injectable } from "@angular/core";
 import { IProduct } from "./product";
+
+import  {HttpClient,HttpErrorResponse} from '@angular/common/http';
+import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/observable/throw';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/do';
 
 
 @Injectable()
 export class ProductService{
 
-    getProducts():IProduct[]{
-        return[
-        {
-            "productId": 2,
-            "productName": "Garden Cart",
-            "productCode": "GDN-0023",
-            "releaseDate": "March 18, 2016",
-            "description": "15 gallon capacity rolling garden cart",
-            "price": 32.99,
-            "starRating": 4.2,
-            "imageUrl": "https://images.pexels.com/photos/36764/marguerite-daisy-beautiful-beauty.jpg?h=350&auto=compress&cs=tinysrgb"
-        },
-        {
-            "productId": 5,
-            "productName": "Hammer",
-            "productCode": "TBX-0048",
-            "releaseDate": "May 21, 2016",
-            "description": "Curved claw steel hammer",
-            "price": 8.9,
-            "starRating": 4.8,
-            "imageUrl": "https://static.pexels.com/photos/60597/dahlia-red-blossom-bloom-60597.jpeg"
-        }
-    ];
+private _productUrl= './api/produts/products.json';
 
-    }
+
+constructor(private _http: HttpClient) { }
+
+getProducts(): Observable<IProduct[]> {
+return this._http.get<IProduct[]>(this. _productUrl)
+.do(data => console.log('All: '+ JSON.stringify(data)))
+.catch(this.handleError);
+}
+private handleError(err: HttpErrorResponse) {
+}
 }
